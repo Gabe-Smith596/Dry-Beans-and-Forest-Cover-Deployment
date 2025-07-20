@@ -3,10 +3,7 @@ import streamlit as st
 import pandas as pd
 import numpy as np
 import joblib
-import os
-import time
-import signal
-import keyboard
+
 
 #Loading the saved components
 model = joblib.load('dry_bean_rforest_model.pkl')
@@ -35,10 +32,3 @@ if st.button("Predict Dry Bean Type"):
     prediction_label = label_encoder.inverse_transform(prediction_encoded)[0]
 
     st.success(f"Predicted Dry Bean Type: {prediction_label}")
-
-if st.button("Exit"):
-
-    st.info("The program will be closing down in 3 seconds...")
-    time.sleep(3)
-    keyboard.press_and_release('ctrl + w')
-    os.kill(os.getpid(), signal.SIGTERM)
